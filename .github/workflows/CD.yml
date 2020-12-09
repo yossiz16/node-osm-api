@@ -33,7 +33,11 @@ jobs:
           run: npm run release
             
         - name: Push git tag
-          run: git push --follow -tags
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            branch: ${{ github.ref }}
+            tags: true
             
         - name: Push to NPM
           uses: JS-DevTools/npm-publish@v1
